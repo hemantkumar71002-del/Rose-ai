@@ -2,11 +2,12 @@
 const fs = require("fs"), path = require("path");
 const res = "android/app/src/main/res";
 const src = "resources/android";
-const fs = require('fs');
-if (!fs.existsSync('resources/android')) {
-  console.log('No resources/android, skipping icon');
+
+if (!fs.existsSync(src)) {
+  console.log("resources/android not found, skipping icon");
   process.exit(0);
 }
+
 for (const d of fs.readdirSync(src)) {
   const dest = path.join(res, d);
   fs.mkdirSync(dest, { recursive: true });
@@ -14,6 +15,7 @@ for (const d of fs.readdirSync(src)) {
   const fg = path.join(dest, "ic_launcher_foreground.png");
   if (fs.existsSync(fg)) fs.rmSync(fg);
 }
+
 // Remove the adaptive-icon XML so Android uses the PNG icons above.
 fs.rmSync(path.join(res, "mipmap-anydpi-v26"), { recursive: true, force: true });
 for (const d of fs.readdirSync(res)) {
