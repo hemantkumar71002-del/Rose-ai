@@ -2,6 +2,11 @@
 const fs = require("fs"), path = require("path");
 const res = "android/app/src/main/res";
 const src = "resources/android";
+const fs = require('fs');
+if (!fs.existsSync('resources/android')) {
+  console.log('No resources/android, skipping icon');
+  process.exit(0);
+}
 for (const d of fs.readdirSync(src)) {
   const dest = path.join(res, d);
   fs.mkdirSync(dest, { recursive: true });
