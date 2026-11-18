@@ -1,0 +1,6 @@
+{
+  "appId": "com.example.speakingai",
+  "appName": "Speaking AI Detector",
+  "webDir": "www",
+  "server": { "androidScheme": "https" }
+}
